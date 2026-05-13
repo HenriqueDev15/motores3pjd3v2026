@@ -1,10 +1,16 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 public class CarregarCena : MonoBehaviour
 {
- 
-    public string nomeDaCena;
+    public void IniciarJogo()
+    {
+        GameManager.Instance.ChangeState(GameManager.GameState.Gameplay);
 
-    public void Carregar() => SceneManager.LoadScene(nomeDaCena);
-        
+        GameManager.Instance.ChangeScene("GetStarted_Scene");
     }
+
+    public void SairDoJogo()
+    {
+        Application.Quit();
+    }
+}

@@ -504,9 +504,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 900700584}
-        m_TargetAssemblyTypeName: CarregarCena, Assembly-CSharp
-        m_MethodName: Carregar
+      - m_Target: {fileID: 11500000, guid: 99d839a457cefa0478757e0fa7877f39, type: 3}
+        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -566,7 +566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d839a457cefa0478757e0fa7877f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarregarCena
-  nomeDaCena: GetStarted_Scene
 --- !u!1 &951772877
 GameObject:
   m_ObjectHideFlags: 0

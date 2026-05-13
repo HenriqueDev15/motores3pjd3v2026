@@ -1,23 +1,60 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-  
-    public string gameState;
+   
+    public static GameManager Instance;
+    
+    
+    public enum GameState
+    {
+        Iniciando,
+        MenuPrincipal,
+        Gameplay
+    }
 
-    void Start()
+    public GameState currentState;
+
+    private void Awake()
     {
       
-        gameState = "Starting";
-        Debug.Log("Game State: " + gameState);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
+    private void Start()
+    {
+       
+        ChangeState(GameState.Iniciando);
+
+     
         SceneManager.LoadScene("Splash");
     }
 
-  
-    public void ChangeScene(string GetStarted_Scene )
+   
+    
+
+    public void ChangeState(GameState newState)
     {
-        SceneManager.LoadScene(GetStarted_Scene);
+        currentState = newState;
+
+        Debug.Log("Game State: " + currentState);
+    }
+
+    
+
+    public void ChangeScene(string sceneName)
+    {
+        Debug.Log("Carregando cena: " + sceneName);
+
+        SceneManager.LoadScene(sceneName);
     }
 }

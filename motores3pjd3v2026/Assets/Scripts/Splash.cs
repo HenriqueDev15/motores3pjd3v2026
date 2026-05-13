@@ -1,5 +1,5 @@
+
 using UnityEngine;
-using UnityEngine.SceneManagement; 
 
 public class TelaInicial : MonoBehaviour
 {
@@ -10,7 +10,8 @@ public class TelaInicial : MonoBehaviour
 
     void IrParaOMenu()
     {
-       
-        SceneManager.LoadScene("Menu");
+        GameManager.Instance.ChangeState(GameManager.GameState.MenuPrincipal);
+
+        GameManager.Instance.ChangeScene("Menu");
     }
 }
