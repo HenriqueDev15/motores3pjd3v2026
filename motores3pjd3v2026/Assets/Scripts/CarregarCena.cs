@@ -1,16 +1,16 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarregarCena : MonoBehaviour
 {
     public void IniciarJogo()
     {
-        GameManager.Instance.ChangeState(GameManager.GameState.Gameplay);
-
-        GameManager.Instance.ChangeScene("GetStarted_Scene");
+        
+        GameManager.Instancia.CarregarCena("GetStarted_Scene");
     }
 
-    public void SairDoJogo()
+    public void Sair()
     {
-        Application.Quit();
+        GameManager.Instancia.SairJogo();
     }
 }

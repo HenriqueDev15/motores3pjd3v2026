@@ -1,17 +1,17 @@
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class TelaInicial : MonoBehaviour
+public class Splash : MonoBehaviour
 {
     void Start()
     {
-        Invoke("IrParaOMenu", 2f);
+        Invoke("IrParaMenu", 2f);
     }
 
-    void IrParaOMenu()
+    void IrParaMenu()
     {
-        GameManager.Instance.ChangeState(GameManager.GameState.MenuPrincipal);
-
-        GameManager.Instance.ChangeScene("Menu");
+        
+        GameManager.Instancia.CarregarCena("Menu");
     }
 }
