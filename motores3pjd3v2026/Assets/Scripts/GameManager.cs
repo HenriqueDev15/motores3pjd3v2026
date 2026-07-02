@@ -55,7 +55,20 @@ public class GameManager : MonoBehaviour
 
     public void CarregarCena(string nomeCena)
     {
+        // Se estiver carregada, fecha a GUI antes de trocar de cena
+        if (SceneManager.GetSceneByName("GUI").isLoaded)
+        {
+            SceneManager.UnloadSceneAsync("GUI");
+        }
+
+        // Carrega a cena principal
         SceneManager.LoadScene(nomeCena);
+
+        // Se for a Gameplay, carrega também a GUI
+        if (nomeCena == "GetStarted_Scene")
+        {
+            SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
+        }
     }
 
     private void AoCarregarCena(Scene cena, LoadSceneMode modo)
@@ -66,17 +79,19 @@ public class GameManager : MonoBehaviour
 
     private void AtualizarEstadoPorCena(string nomeCena)
     {
-        if (nomeCena == "Splash")
+        switch (nomeCena)
         {
-            MudarEstado(EstadoJogo.Iniciando);
-        }
-        else if (nomeCena == "Menu")
-        {
-            MudarEstado(EstadoJogo.Menu);
-        }
-        else if (nomeCena == "GetStarted_Scene")
-        {
-            MudarEstado(EstadoJogo.Gameplay);
+            case "Splash":
+                MudarEstado(EstadoJogo.Iniciando);
+                break;
+
+            case "Menu":
+                MudarEstado(EstadoJogo.Menu);
+                break;
+
+            case "GetStarted_Scene":
+                MudarEstado(EstadoJogo.Gameplay);
+                break;
         }
     }
 
@@ -89,6 +104,7 @@ public class GameManager : MonoBehaviour
     public void AlocarInput()
     {
         entradaJogador = FindFirstObjectByType<PlayerInput>();
+
         if (entradaJogador != null)
         {
             Debug.Log("Player Input encontrado na cena atual!");
