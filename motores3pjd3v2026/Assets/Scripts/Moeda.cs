@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -5,9 +6,11 @@ public class Coin : MonoBehaviour
     [Header("Rotação")]
     public float rotationSpeed = 180f;
 
+   
+    public static event Action OnCoinCollected;
+
     private void Update()
     {
-        // Gira continuamente no eixo Z
         transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
     }
 
@@ -15,12 +18,8 @@ public class Coin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerCoins player = other.GetComponent<PlayerCoins>();
-
-            if (player != null)
-            {
-                player.CollectCoin();
-            }
+            
+            OnCoinCollected?.Invoke();
 
             Destroy(gameObject);
         }
